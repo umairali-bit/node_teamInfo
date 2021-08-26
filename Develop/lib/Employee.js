@@ -1,27 +1,29 @@
-// TODO: Write code to define and export the Employee class
+//Write code to define and export the Employee class
 
 class Employee {
-    constructor (name, id, position, email){
+    constructor (name, id, email, role){
         this.name = name;
         this.id = id;
-        this.position = position;
         this.email = email;
+        this.role = role;
+        
     }
 
     getName(){
         return this.name;
     }
 
-    getID(){
+    getId(){
         return this.id;
     }
     getEmail(){
         return this.email;
     }
-    getPosition(){
-        return "Employee";
+    getRole(){
+        return "Employee"
     }
 
     
 }
-module.export = Employee;
+
+module.exports = Employee;

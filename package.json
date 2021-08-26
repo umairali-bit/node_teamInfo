@@ -1,0 +1,25 @@
+{
+  "name": "node_teaminfo",
+  "version": "1.0.0",
+  "description": "team info",
+  "main": "app.js",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umairali-bit/node_teamInfo.git"
+  },
+  "author": "umair Ali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umairali-bit/node_teamInfo/issues"
+  },
+  "homepage": "https://github.com/umairali-bit/node_teamInfo#readme"
+}
