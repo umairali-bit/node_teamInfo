@@ -12,8 +12,10 @@ const render = require("./lib/htmlRenderer");
 
 const employeeData =[];
 
-function questions() {
-    inquirer.prompt([
+
+function managerQ() {
+    inquirer
+    .prompt([
 
         {
             type: "input",
@@ -39,21 +41,39 @@ function questions() {
             name: "officeNumber"
 
         },
-        {
-            type: "list",
-            message: "Please select the employee's role:",
-            name: "role",
-            choices: ["Engineer", "Intern","finish building my team"]
-
-        }
     ])
-        
+   
+
+.then((answers) => {
+    
+    
+    const manager = new Manager
+     (
+     answers.name,
+     answers.id,
+     answers.email,
+     answers.officeNumber
+     );
+     employeeData.push(manager);
+     console.log(employeeData[0]);
+     
+     
+     });
+     
      
 
-    
+     
+    }
 
-}
-questions();
+    // function employeeQ() {
+    //     inquirer
+    //     .prompt([
+
+
+    //     ])
+    // }
+    
+    managerQ();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
