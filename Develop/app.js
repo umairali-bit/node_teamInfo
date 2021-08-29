@@ -23,7 +23,7 @@ function employeeQuestions() {
         message: "what will be the Employee Role",
         type: "list",
         name: "role",
-        choices: ["Manager", "Engineer", "Intern", "I'm done"],
+        choices: ["Manager", "Engineer", "Intern"]
       },
       {
         message: "Whats is the name of the new Employee",
