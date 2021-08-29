@@ -23,15 +23,15 @@ The first class is an Employee parent class with the following properties and me
 
 * `getRole()`   // Returns 'Employee'
 
-The other three classes will extend `Employee`.
+The other three classes extend `Employee`.
 
-In addition to `Employee`'s properties and methods, `Manager` will also have:
+In addition to `Employee`'s properties and methods, `Manager` also have the following:
 
 * `officeNumber`
 
 * `getRole()`   // Overridden to return 'Manager'
 
-In addition to `Employee`'s properties and methods, `Engineer` will also have:
+In addition to `Employee`'s properties and methods, `Engineer` also have the following:
 
 * `github`  // GitHub username
 
@@ -39,7 +39,7 @@ In addition to `Employee`'s properties and methods, `Engineer` will also have:
 
 * `getRole()`   // Overridden to return 'Engineer'
 
-In addition to `Employee`'s properties and methods, `Intern` will also have:
+In addition to `Employee`'s properties and methods, `Intern` also have the following:
 
 * `school`
 
