@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { exit } = require("process");
 
 //saving employees Data
 const employeeData = [];
@@ -22,7 +23,7 @@ function employeeQuestions() {
         message: "what will be the Employee Role",
         type: "list",
         name: "role",
-        choices: ["Manager", "Engineer", "intern"],
+        choices: ["Manager", "Engineer", "Intern", "I'm done"],
       },
       {
         message: "Whats is the name of the new Employee",
@@ -30,7 +31,7 @@ function employeeQuestions() {
         name: "name",
       },
       {
-        message: "Employee ID Number",
+        message: "Please enter the Employee's ID Number",
         type: "input",
         name: "id",
       },
@@ -49,9 +50,10 @@ function employeeQuestions() {
         manager(data);
       } else if (data.role === "Engineer") {
         engineer(data);
-      } else {
-        intern(data);
+      } else if (data.role === "Intern"){
+          intern(data);
       }
+      
     });
 }
 //manager function
@@ -64,7 +66,7 @@ function manager(answers) {
         name: "officeNumber",
       },
       {
-        message: "would you like to add another Employee",
+        message: "Would you like to add another Employee",
         type: "confirm",
         name: "confirmEmployee",
       },
@@ -92,12 +94,12 @@ function engineer(answers) {
   inquirer
     .prompt([
       {
-        message: "Github username",
+        message: "Please enter the Engineer's Github user name:",
         type: "input",
         name: "gitHub",
       },
       {
-        message: "would you like to add another Employee",
+        message: "Would you like to add another Employee",
         type: "confirm",
         name: "confirmEmployee",
       },
