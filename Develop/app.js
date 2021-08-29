@@ -13,9 +13,11 @@ const render = require("./lib/htmlRenderer");
 const employeeData =[];
 
 
-function managerQ() {
+function manager() {
     inquirer
     .prompt([
+
+
 
         {
             type: "input",
@@ -41,39 +43,131 @@ function managerQ() {
             name: "officeNumber"
 
         },
+
     ])
+    .then((data) => {
+        console.log(data);
+        const manager = new Manager(
+         data.name,
+          data.id,
+          data.email,
+          data.officeNumber
+        );
+        employeeData.push(manager);
+    });
+};
+
+manager();
+
+  function employee() {
+    inquirer
+    .prompt([
+       {
+         message: "what will be the Employee Role",
+         type: "list",
+         name: "role",
+         choices: ["Engineer", "Intern", "Im done"],
+       },
+       
+       
+
+    ])
+    .then((answers) => {
+      console.log(answers);
+      if (answers.role === "Engineer") {
+        engineer();
+      } else if (answers.role === "Intern") {
+          intern()
+      }
+    });
+
+
+ function engineer() {
+     inquirer
+       .prompt([
+
+        {
+            type: "input",
+            message: "Please enter the Engineer's name:",
+            name: "nameE"
+
+        },
+        {
+            type: "input",
+            message: "Please enter the Engineer's ID:",
+            name: "idE"
+
+        },
+        {
+            type: "input",
+            message: "Please enter the Engineer's email",
+            name: "emailE"
+
+        },
+        {
+          message: "Github username",
+          type: "input",
+          name: "gitHub",
+          validate: (nameInput) => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log("please add you GITHUB user name");
+              return false;
+            }
+          },
+        },
+        {
+          message: "would you like to add another Employee",
+          type: "confirm",
+          name: "confirmEmployee",
+        },
+      ])
+      .then((data) => {
+        console.log(data);
+        const engineer = new Engineer(
+        data.nameE,
+        data.idE,
+        data.emailE,
+        data.gitHub
+        );
+        employeeData.push(engineer);
+  
+        if (data.confirmEmployee === true) {
+            employee();
+        } else {
+          createMember();
+        }
+      });
+  }
+}
+
+  
+
+
+
+
+
+
+        
+             
+            
+    
+    
+        
+           
+                 
+        
+       
+     
+    
    
 
-.then((answers) => {
     
     
-    const manager = new Manager
-     (
-     answers.name,
-     answers.id,
-     answers.email,
-     answers.officeNumber
-     );
-     employeeData.push(manager);
-     console.log(employeeData[0]);
-     
-     
-     });
-     
-     
-
-     
-    }
-
-    // function employeeQ() {
-    //     inquirer
-    //     .prompt([
-
-
-    //     ])
-    // }
     
-    managerQ();
+    
+   
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
