@@ -9,12 +9,13 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { exit } = require("process");
 
 const employeeData =[];
 
 
-function manager() {
-    inquirer
+const prompts = () =>{
+    return inquirer
     .prompt([
 
 
@@ -43,71 +44,52 @@ function manager() {
             name: "officeNumber"
 
         },
-
-    ])
-    .then((data) => {
-        console.log(data);
-        const manager = new Manager(
-         data.name,
-          data.id,
-          data.email,
-          data.officeNumber
-        );
-        employeeData.push(manager);
-    });
-};
-
-manager();
-
-  function employee() {
-    inquirer
-    .prompt([
        {
          message: "what will be the Employee Role",
          type: "list",
          name: "role",
          choices: ["Engineer", "Intern", "Im done"],
        },
-       
-       
-
-    ])
-    .then((answers) => {
-      console.log(answers);
-      if (answers.role === "Engineer") {
-        engineer();
-      } else if (answers.role === "Intern") {
-          intern()
-      }
-    });
-
-
- function engineer() {
-     inquirer
-       .prompt([
 
         {
             type: "input",
             message: "Please enter the Engineer's name:",
-            name: "nameE"
+            name: "nameE",
+            when: ({ role }) => {
+                if (role === 'Engineer') return true;
+                else return false;
+            },
 
         },
         {
             type: "input",
             message: "Please enter the Engineer's ID:",
-            name: "idE"
+            name: "idE",
+            when: ({ role }) => {
+                if (role === 'Engineer') return true;
+                else return false;
+            },
 
         },
         {
             type: "input",
             message: "Please enter the Engineer's email",
-            name: "emailE"
+            name: "emailE",
+            when: ({ role }) => {
+                if (role === 'Engineer') return true;
+                else return false;
+            },
 
         },
         {
-          message: "Github username",
+          message: "Please enter your Github username: (Required)",
           type: "input",
           name: "gitHub",
+          when: ({role}) => {
+            if(role === 'Engineerccad') return true;
+            else return false;
+            },
+        
           validate: (nameInput) => {
             if (nameInput) {
               return true;
@@ -118,29 +100,125 @@ manager();
           },
         },
         {
-          message: "would you like to add another Employee",
-          type: "confirm",
-          name: "confirmEmployee",
+            type: "input",
+            message: "Please enter the Intern's name:",
+            name: "nameI",
+            when: ({role}) => {
+                if(role === 'Intern') return true;
+                else return false;
+                },
+
         },
+        {
+            type: "input",
+            message: "Please enter the Intern's ID:",
+            name: "idI",
+            when: ({role}) => {
+                if(role === 'Intern') return true;
+                else return false;
+                },
+
+        },
+        {
+            type: "input",
+            message: "Please enter the Intern's email:",
+            name: "emailI",
+            when: ({role}) => {
+                if(role === 'Intern') return true;
+                else return false;
+                },
+
+        },
+        {
+            message: "Where did the Intern went to school",
+            type: "input",
+            name: "school",
+            when: ({role}) => {
+                if(role === 'Intern') return ture;
+                else return false;
+                },
+            validate: (nameInput) => {
+              if (nameInput) {
+                return true;
+              } else {
+                console.log("please provide your INTERN  school");
+                return false;
+              }
+            },
+          },
+          {
+            message: "would you like to add another Employee",
+            type: "confirm",
+            name: "confirmEmployee",
+          },
       ])
-      .then((data) => {
-        console.log(data);
-        const engineer = new Engineer(
-        data.nameE,
-        data.idE,
-        data.emailE,
-        data.gitHub
-        );
-        employeeData.push(engineer);
   
-        if (data.confirmEmployee === true) {
-            employee();
+    }
+
+    prompts()
+    .then((data) => {
+        console.log(data);
+        const manager = new Manager(
+          data.name,
+          data.id,
+          data.email,
+          data.officeNumber
+        );
+        employeeData.push(manager);
+
+        if (data.role === "Engineer") {
+            const engineer = new Engineer(
+                data.nameE,
+                data.idE,
+                data.emailE,
+                data.gitHub
+                );
+                employeeData.push(engineer);
+        
+            
+          } else if (data.role === "Intern") {
+            const intern = new Intern(
+                data.nameI,
+                data.idI,
+                data.emailI,
+                data.school
+                );
+                employeeData.push(intern);
+          }
+
+          if (data.confirmEmployee === true) {
+            prompts();
         } else {
           createMember();
         }
-      });
-  }
-}
+    });
+
+    function createMember() {
+        fs.existsSync(OUTPUT_DIR) || fs.mkdirSync(OUTPUT_DIR)
+      
+        fs.writeFileSync(outputPath, render(employeeData), "utf-8", err => {
+        
+        if (err) throw new Error(err);
+
+      console.log('created');
+         
+      }
+        )
+    }
+  
+   
+    
+
+
+        
+  
+       
+     
+    
+    
+    
+    
+
 
   
 
