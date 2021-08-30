@@ -28,7 +28,7 @@ function employeeQuestions() {
       {
         message: "Whats is the name of the new Employee",
         type: "input",
-        name: "name",
+        name: "name"
       },
       {
         message: "Please enter the Employee's ID Number",
@@ -38,7 +38,7 @@ function employeeQuestions() {
       {
         message: "whats the Employee email",
         type: "input",
-        name: "email",
+        name: "email"
         },
       
     ])
@@ -63,12 +63,12 @@ function manager(answers) {
       {
         message: "What is the manager Office number?",
         type: "input",
-        name: "officeNumber",
+        name: "officeNumber"
       },
       {
         message: "Would you like to add another Employee",
         type: "confirm",
-        name: "confirmEmployee",
+        name: "confirmEmployee"
       },
     ])
 
@@ -96,12 +96,12 @@ function engineer(answers) {
       {
         message: "Please enter the Engineer's Github user name:",
         type: "input",
-        name: "gitHub",
+        name: "gitHub"
       },
       {
         message: "Would you like to add another Employee",
         type: "confirm",
-        name: "confirmEmployee",
+        name: "confirmEmployee"
       },
     ])
     .then((data) => {
@@ -133,7 +133,7 @@ function intern(answers) {
       {
         message: "would you like to add another Employee",
         type: "confirm",
-        name: "confirmEmployee",
+        name: "confirmEmployee"
       },
     ])
     .then((data) => {
