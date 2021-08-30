@@ -2,7 +2,7 @@
 
 The challenge was to build a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person. 
 
-[Video Link](https://drive.google.com/file/d/1Xr1u1iJHVfnyN2Jb3fsd9JtciKGrFPTr/view)
+[Video Link](https://drive.google.com/file/d/1nHYxriF-9nHoSOOyaFhPic-KOCjVeGAz/view)
 
 
 The application have these classes: `Employee`, `Manager`, `Engineer`, and `Intern`. The tests for these classes (in the `tests` directory) **are all passed**.
